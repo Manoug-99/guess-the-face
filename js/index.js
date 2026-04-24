@@ -82,22 +82,3 @@ document.getElementById('guess-input').addEventListener('keypress', (e) => {
 });
 
 loadLevel();
-
-// Mobile keyboard handling
-let viewportHeight = window.innerHeight;
-window.addEventListener('resize', () => {
-    const currentHeight = window.innerHeight;
-    const heightDifference = viewportHeight - currentHeight;
-
-    // If height decreased significantly (keyboard opened), adjust layout
-    if (heightDifference > 150) {
-        document.body.style.paddingBottom = '20px';
-        document.getElementById('image-container').style.marginBottom = '10px';
-    } else if (heightDifference < -150) {
-        // Keyboard closed
-        document.body.style.paddingBottom = '';
-        document.getElementById('image-container').style.marginBottom = '';
-    }
-
-    viewportHeight = currentHeight;
-});
