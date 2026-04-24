@@ -5,10 +5,13 @@ body {
     align-items: center;
     background-color: #f0f0f0;
     padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 h1 {
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
 #level {
@@ -19,6 +22,7 @@ h1 {
 
 #image-container {
     margin-bottom: 20px;
+    flex-shrink: 0;
 }
 
 #person-image {
@@ -26,18 +30,25 @@ h1 {
     max-height: 300px;
     border: 2px solid #ccc;
     border-radius: 10px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 #guess-section {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    flex-shrink: 0;
 }
 
 #guess-input {
     padding: 10px;
     font-size: 18px;
     width: 200px;
+    flex: 1;
 }
 
 #submit-btn {
@@ -48,6 +59,7 @@ h1 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 #submit-btn:hover {
@@ -58,4 +70,65 @@ h1 {
     font-size: 18px;
     font-weight: bold;
     min-height: 24px;
+    flex-shrink: 0;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        padding-bottom: 20px; /* Extra padding for keyboard */
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    #level {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    #person-image {
+        max-width: 250px;
+        max-height: 250px;
+    }
+
+    #guess-section {
+        flex-direction: column;
+        gap: 15px;
+        max-width: 300px;
+    }
+
+    #guess-input {
+        width: 100%;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    #submit-btn {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    #message {
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    #person-image {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    #level {
+        font-size: 18px;
+    }
 }
