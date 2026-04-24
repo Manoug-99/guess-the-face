@@ -1,14 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 20px 12px 24px;
+    margin: 0;
+    min-height: 100vh;
 }
 
 h1 {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #level {
@@ -18,26 +25,45 @@ h1 {
 }
 
 #image-container {
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    justify-content: center;
 }
 
 #person-image {
-    max-width: 300px;
-    max-height: 300px;
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+    max-height: 320px;
     border: 2px solid #ccc;
     border-radius: 10px;
+    display: block;
 }
 
 #guess-section {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    width: 100%;
+    max-width: 420px;
+    justify-content: center;
+    align-items: center;
 }
 
 #guess-input {
-    padding: 10px;
+    padding: 12px;
     font-size: 18px;
-    width: 200px;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+}
+
+#guess-input:focus {
+    border-color: #4CAF50;
 }
 
 #submit-btn {
@@ -58,4 +84,153 @@ h1 {
     font-size: 18px;
     font-weight: bold;
     min-height: 24px;
+}
+
+/* Armenian Keyboard Styles */
+#keyboard-container {
+    margin: 20px 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.keyboard-row::-webkit-scrollbar {
+    height: 6px;
+}
+
+.keyboard-row::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.key {
+    background-color: #ffffff;
+    border: 2px solid #cccccc;
+    border-radius: 8px;
+    padding: 12px 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    cursor: pointer;
+    flex: 0 0 auto;
+    min-width: 32px;
+    text-align: center;
+    transition: all 0.1s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.key:hover {
+    background-color: #f0f0f0;
+    border-color: #999999;
+}
+
+.key:active {
+    background-color: #e0e0e0;
+    transform: scale(0.95);
+}
+
+.key.special {
+    background-color: #f8f8f8;
+    border-color: #aaaaaa;
+    font-size: 14px;
+    padding: 10px 6px;
+}
+
+.key.special:active {
+    background-color: #d8d8d8;
+}
+
+.key.active {
+    background-color: #d1ffe0;
+    border-color: #4caf50;
+}
+
+/* Mobile keyboard styles */
+@media (max-width: 768px) {
+    body {
+        padding: 16px 10px 32px;
+    }
+
+    #level {
+        font-size: 20px;
+    }
+
+    #guess-section {
+        max-width: 100%;
+    }
+
+    #guess-input {
+        font-size: 16px;
+    }
+
+    #keyboard-container {
+        margin: 10px 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    #keyboard {
+        gap: 6px;
+    }
+
+    .keyboard-row {
+        gap: 4px;
+    }
+
+    .key {
+        padding: 12px 6px;
+        font-size: 18px;
+        min-width: 30px;
+        min-height: 40px;
+    }
+
+    .key.special {
+        font-size: 14px;
+        padding: 10px 6px;
+        min-width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    #person-image {
+        max-width: 240px;
+        max-height: 240px;
+    }
+
+    #keyboard {
+        gap: 6px;
+    }
+
+    .key {
+        padding: 10px 5px;
+        font-size: 16px;
+        min-width: 28px;
+        min-height: 36px;
+    }
+
+    .key.special {
+        font-size: 12px;
+        padding: 9px 5px;
+        min-width: 65px;
+    }
 }
