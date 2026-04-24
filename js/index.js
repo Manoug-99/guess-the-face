@@ -2,10 +2,13 @@ const people = [
     { name: 'Քրիստափոր Միքայէլեան', image: 'https://upload.wikimedia.org/wikipedia/en/1/1f/Db_1a_Chrisdapr1.jpg' },
     { name: 'Սիմոն Զաւարեան', image: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Zavarian.JPG' },
     { name: 'Ստեփան Զօրեան', image: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Stepan_Zorian-1.png' },
+    { name: 'Յարութ Բանոյեան', image: 'pics/faces/Բանոյեան-01.jpg' },
+    { name: 'Ս', image: 'pics/img.png' }
     
 ];
 
 let currentLevel = 0;
+let capsLock = false;
 
 function preloadImage(src) {
     return new Promise((resolve, reject) => {
@@ -25,7 +28,7 @@ function loadLevel() {
     }
 
     const person = people[currentLevel];
-    document.getElementById('level').textContent = `${currentLevel + 1} / 3`;
+    document.getElementById('level').textContent = `${currentLevel + 1} / ${people.length}`;
     document.getElementById('guess-input').value = '';
     document.getElementById('message').textContent = 'Loading image...';
 
@@ -44,32 +47,35 @@ function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+const defaultPlaceholder = 'Գրէ՜ անունը';
+
 function checkGuess() {
-    const guess = document.getElementById('guess-input').value.trim().toLowerCase();
+    const guessInput = document.getElementById('guess-input');
+    const guess = guessInput.value.trim().toLowerCase();
     const correctName = people[currentLevel].name.toLowerCase();
 
     if (guess === correctName) {
         const nextLevel = currentLevel + 1;
-        document.getElementById('message').textContent = 'Ճիշտ է';
+        guessInput.value = '';
+        guessInput.placeholder = 'Ճիշտ է';
+        document.getElementById('message').textContent = '';
 
-        if (nextLevel >= people.length) {
-            wait(2000).then(() => {
-                currentLevel = nextLevel;
-                loadLevel();
-            });
-            return;
-        }
+        const nextImageSrc = people[nextLevel] ? people[nextLevel].image : null;
+        const preloadPromise = nextImageSrc ? preloadImage(nextImageSrc).catch(() => null) : Promise.resolve(null);
 
-        const nextImageSrc = people[nextLevel].image;
-        const preloadPromise = preloadImage(nextImageSrc).catch(() => null);
-        const delayPromise = wait(2000);
-
-        Promise.all([preloadPromise, delayPromise]).then(() => {
+        Promise.all([preloadPromise, wait(2000)]).then(() => {
+            guessInput.placeholder = defaultPlaceholder;
             currentLevel = nextLevel;
             loadLevel();
         });
     } else {
-        document.getElementById('message').textContent = 'Սխալ է';
+        guessInput.value = '';
+        guessInput.placeholder = 'Սխալ է';
+        document.getElementById('message').textContent = '';
+
+        wait(2000).then(() => {
+            guessInput.placeholder = defaultPlaceholder;
+        });
     }
 }
 
@@ -82,3 +88,73 @@ document.getElementById('guess-input').addEventListener('keypress', (e) => {
 });
 
 loadLevel();
+
+// Armenian Keyboard Functionality
+const guessInput = document.getElementById('guess-input');
+const keyboard = document.getElementById('keyboard');
+
+keyboard.addEventListener('click', (e) => {
+    const key = e.target.dataset.key;
+    if (!key) {
+        return;
+    }
+    handleKeyPress(key);
+});
+
+function updateKeyboardCaps() {
+    document.querySelectorAll('.key[data-key]').forEach((button) => {
+        const key = button.dataset.key;
+        if (key === 'caps' || key === 'backspace' || key === 'space') {
+            return;
+        }
+        button.textContent = capsLock ? key.toUpperCase() : key.toLowerCase();
+    });
+
+    const capsButton = document.querySelector('.key[data-key="caps"]');
+    if (capsButton) {
+        capsButton.classList.toggle('active', capsLock);
+    }
+}
+
+function handleKeyPress(key) {
+    switch (key) {
+        case 'caps':
+            capsLock = !capsLock;
+            updateKeyboardCaps();
+            break;
+        case 'backspace':
+            guessInput.value = guessInput.value.slice(0, -1);
+            break;
+        case 'space':
+            guessInput.value += ' ';
+            break;
+        case 'enter':
+            checkGuess();
+            break;
+        default:
+            guessInput.value += capsLock ? key.toUpperCase() : key;
+            break;
+    }
+}
+
+// Disable native keyboard entirely by using readonly and inputmode="none" on the input
+guessInput.addEventListener('focus', (e) => {
+    e.target.blur();
+});
+
+updateKeyboardCaps();
+
+// Visual feedback for key presses
+document.querySelectorAll('.key').forEach(key => {
+    key.addEventListener('mousedown', () => {
+        key.style.transform = 'scale(0.95)';
+    });
+
+    key.addEventListener('mouseup', () => {
+        key.style.transform = 'scale(1)';
+    });
+
+    key.addEventListener('mouseleave', () => {
+        key.style.transform = 'scale(1)';
+    });
+});
