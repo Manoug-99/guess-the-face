@@ -50,7 +50,7 @@ function checkGuess() {
 
     if (guess === correctName) {
         const nextLevel = currentLevel + 1;
-        document.getElementById('message').textContent = 'Ճիշտ է, Եկէ՜ք յաջորդ մակարդակին';
+        document.getElementById('message').textContent = 'Ճիշտ է';
 
         if (nextLevel >= people.length) {
             wait(2000).then(() => {
@@ -69,7 +69,7 @@ function checkGuess() {
             loadLevel();
         });
     } else {
-        document.getElementById('message').textContent = 'Սխալ է, ետ փորձէ՜';
+        document.getElementById('message').textContent = 'Սխալ է';
     }
 }
 
@@ -82,3 +82,22 @@ document.getElementById('guess-input').addEventListener('keypress', (e) => {
 });
 
 loadLevel();
+
+// Mobile keyboard handling
+let viewportHeight = window.innerHeight;
+window.addEventListener('resize', () => {
+    const currentHeight = window.innerHeight;
+    const heightDifference = viewportHeight - currentHeight;
+
+    // If height decreased significantly (keyboard opened), adjust layout
+    if (heightDifference > 150) {
+        document.body.style.paddingBottom = '20px';
+        document.getElementById('image-container').style.marginBottom = '10px';
+    } else if (heightDifference < -150) {
+        // Keyboard closed
+        document.body.style.paddingBottom = '';
+        document.getElementById('image-container').style.marginBottom = '';
+    }
+
+    viewportHeight = currentHeight;
+});
