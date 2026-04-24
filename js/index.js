@@ -57,7 +57,7 @@ function checkGuess() {
     if (guess === correctName) {
         const nextLevel = currentLevel + 1;
         guessInput.value = '';
-        guessInput.placeholder = 'Ճիշտ է';
+        guessInput.placeholder = 'Ճիշդ է';
         document.getElementById('message').textContent = '';
 
         const nextImageSrc = people[nextLevel] ? people[nextLevel].image : null;
