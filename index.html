@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Գիտցիր Դէմքը</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -13,8 +13,64 @@
         <img id="person-image" src="" alt="Person to guess">
     </div>
     <div id="guess-section">
-        <input type="text" id="guess-input" placeholder="Գրէ՜ անունը">
-        <button id="submit-btn">ստուգել</button>
+        <input type="text" id="guess-input" placeholder="Գրէ՛ անունը" readonly inputmode="none" autocomplete="off">
+    </div>
+    <div id="keyboard-container">
+        <div id="keyboard">
+            <div class="keyboard-row">
+                <button class="key" data-key="ա">ա</button>
+                <button class="key" data-key="բ">բ</button>
+                <button class="key" data-key="գ">գ</button>
+                <button class="key" data-key="դ">դ</button>
+                <button class="key" data-key="ե">ե</button>
+                <button class="key" data-key="զ">զ</button>
+                <button class="key" data-key="է">է</button>
+                <button class="key" data-key="ը">ը</button>
+                <button class="key" data-key="թ">թ</button>
+                <button class="key" data-key="ժ">ժ</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key" data-key="ի">ի</button>
+                <button class="key" data-key="լ">լ</button>
+                <button class="key" data-key="խ">խ</button>
+                <button class="key" data-key="ծ">ծ</button>
+                <button class="key" data-key="կ">կ</button>
+                <button class="key" data-key="հ">հ</button>
+                <button class="key" data-key="ձ">ձ</button>
+                <button class="key" data-key="ղ">ղ</button>
+                <button class="key" data-key="ճ">ճ</button>
+                <button class="key" data-key="մ">մ</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key" data-key="յ">յ</button>
+                <button class="key" data-key="ն">ն</button>
+                <button class="key" data-key="շ">շ</button>
+                <button class="key" data-key="ո">ո</button>
+                <button class="key" data-key="չ">չ</button>
+                <button class="key" data-key="պ">պ</button>
+                <button class="key" data-key="ջ">ջ</button>
+                <button class="key" data-key="ռ">ռ</button>
+                <button class="key" data-key="ս">ս</button>
+                <button class="key" data-key="վ">վ</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key" data-key="տ">տ</button>
+                <button class="key" data-key="ր">ր</button>
+                <button class="key" data-key="ց">ց</button>
+                <button class="key" data-key="ւ">ւ</button>
+                <button class="key" data-key="փ">փ</button>
+                <button class="key" data-key="ք">ք</button>
+                
+                <button class="key" data-key="օ">օ</button>
+                <button class="key" data-key="ֆ">ֆ</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key special" data-key="caps">ԱԲԳ</button>
+                <button class="key special" data-key="space">␣</button>
+                <button class="key special" data-key="backspace">⌫</button>
+                <button id="submit-btn" class="key special">ստուգել</button>
+            </div>
+        </div>
     </div>
     <div id="message"></div>
     <script src="js/index.js"></script>
