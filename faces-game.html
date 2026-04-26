@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ո՞վ է այս դէմքը</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/faces-game.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <a href="index.html" class="back-button">←</a>
+            <h1>Ո՞վ է այս դէմքը</h1>
+            <button id="dark-mode-toggle">🌙</button>
+        </header>
+
+        <div id="level-container">
+            <div id="level" class="glass-panel">1 / 50</div>
+        </div>
+
+        <div id="image-container">
+            <img id="person-image" src="" alt="Person to guess" class="glass-panel">
+        </div>
+
+        <div id="guess-section">
+            <input type="text" id="guess-input" class="glass-panel" placeholder="Գրէ՛ անունը" readonly inputmode="none" autocomplete="off">
+            <button id="submit-btn">Ստուգել</button>
+        </div>
+
+        <div id="message" class="game-message"></div>
+
+        <div id="keyboard-container"></div>
+    </div>
+
+
+
+    <script src="js/index.js"></script>
+    <script src="js/faces-game.js"></script>
+</body>
+</html>
