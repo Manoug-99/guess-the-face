@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hy">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Արագատիպ</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/typing-game.css">
+</head>
+
+<body>
+    <div class="game-container typing-container">
+        <header class="game-header">
+            <a href="index.html" class="back-button">←</a>
+            <h1>Արագատիպ</h1>
+            <button id="dark-mode-toggle">🌙</button>
+        </header>
+
+        <div class="stats-bar glass-panel">
+            <div class="stat">
+                <span class="stat-label">Ժամանակ</span>
+                <span id="time-display" class="stat-value">30</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Արագութիւն</span>
+                <span id="wpm-display" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Ճշգրտութիւն</span>
+                <span id="accuracy-display" class="stat-value">100%</span>
+            </div>
+        </div>
+
+        <div class="words-container glass-panel" id="words-container">
+            <div id="words-display"></div>
+            <div class="focus-overlay" id="focus-overlay">Սեղմէ հոս կամ սկսիր տպել</div>
+        </div>
+
+        <div id="keyboard-container" class="typing-keyboard"></div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="js/words.js"></script>
+    <script src="js/typing-game.js"></script>
+</body>
+
+</html>
