@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Auth | Supabase</title>
+    <meta name="description" content="Secure and stylish authentication system powered by Supabase.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="auth-container" id="auth-container">
+        <!-- Message Box -->
+        <div id="message"></div>
+
+        <!-- Login Form -->
+        <section id="login-section">
+            <div class="header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to your account</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn" id="login-btn">Sign In</button>
+            </form>
+            <p class="toggle-text">Don't have an account? <span id="go-to-signup">Sign up</span></p>
+        </section>
+
+        <!-- Sign Up Form -->
+        <section id="signup-section" class="hidden">
+            <div class="header">
+                <h1>Create Account</h1>
+                <p>Start your journey with us</p>
+            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn" id="signup-btn">Create Account</button>
+            </form>
+            <p class="toggle-text">Already have an account? <span id="go-to-login">Sign in</span></p>
+        </section>
+
+        <!-- Profile / Logged In View -->
+        <section id="profile-section" class="hidden">
+            <div class="profile-view">
+                <div class="user-badge" id="user-initials">U</div>
+                <div class="header">
+                    <h1>Welcome!</h1>
+                    <p class="email-display" id="user-email"></p>
+                </div>
+                <a href="dashboard.html" class="btn" style="text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">Go to Dashboard</a>
+                <button class="btn btn-secondary" id="logout-btn">Log Out</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+</body>
+</html>
