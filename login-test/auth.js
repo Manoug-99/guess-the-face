@@ -71,6 +71,9 @@ signupForm.addEventListener('submit', async (e) => {
     const { data, error } = await supabaseClient.auth.signUp({
         email,
         password,
+        options: {
+            emailRedirectTo: window.location.origin + window.location.pathname
+        }
     });
 
     if (error) {
